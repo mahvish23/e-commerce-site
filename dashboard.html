@@ -1,0 +1,62 @@
+<html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1 class="h2">Dashboard</h1>
+  {% if success=="" %}
+  <h1 class="h2">Welcome {{user_info[0][1]}} </h1>
+<span>{{user_info[0][2]}}</span>
+{% else %}
+<h1 class="h2">Welcome {{user_info[0][1]}} </h1>
+<span>{{user_info[0][2]}}</span>
+{% for i in range(l) %}
+<ul>
+<li>{{productlist[i]['product_name']}}</li>
+<div>{{productlist[i]['price_init']}}</div>
+<div class="text-center">
+  <a href="{{ productlist[i]['url'] }}" class="txt2 hov1">
+    BUY NOW
+  </a>
+  
+</div>
+<div class="container-login100-form-btn" id="buttonid" type=button>
+  <button class="login100-form-btn" type="button">
+       Delete
+  </button>
+</ul>
+
+
+{% endfor %}
+{% endif %}
+<form class="login100-form validate-form" action="{{ url_for('dashboard') }}" method="POST" >
+<div class="wrap-input100 validate-input m-b-20" data-validate="Enter  email">
+  <input class="input100" type="text" name="url" placeholder="url"  required>
+  <span class="focus-input100"></span>
+</div>
+
+      <div class="container-login100-form-btn"  type=submit>
+              <button class="login100-form-btn" type="submit">
+                   Add Product 
+              </button>
+        </div>
+      </form>
+      <div class="text-center">
+        <a href="{{ url_for('logout') }}" class="txt2 hov1">
+          LogOut
+        </a>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+  $('#buttonid').on("click", function(){
+   $(this).closest("li").remove(); 
+});
+</script>
+
+
+
+</body>
+</html>
